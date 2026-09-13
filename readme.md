@@ -61,7 +61,7 @@ Karena aplikasi ini menggunakan Vanilla JS dan CDN, Anda **tidak perlu** mengins
 ### Opsi 1: Menjalankan Secara Lokal (Offline)
 1. *Clone repository* ini ke komputer Anda:
    ```bash
-   git clone https://github.com/USERNAME_ANDA/ultimate-super-calculator.git
+   git clone https://github.com/MichaelNeo1214/Ultimate-Super-Calculator
    ```
 2. Buka folder proyek tersebut:
    ```bash
