@@ -72,7 +72,7 @@ Karena aplikasi ini menggunakan Vanilla JS dan CDN, Anda **tidak perlu** mengins
 
 ### Opsi 2: Menggunakan Versi Live (Online)
 Jika Anda sudah men-*deploy* proyek ini (misal menggunakan GitHub Pages, Vercel, atau Netlify), pengguna dapat langsung mengaksesnya melalui tautan berikut:
-👉 **[Live Demo: Ultimate Super Calculator](https://link-demo-anda.com)** *(Ganti dengan link asli Anda nantinya)*
+👉 **[Live Demo: Ultimate Super Calculator](https://www.michaelap.my.id/Calculator%20Online/index.html)**
 
 ---
 
