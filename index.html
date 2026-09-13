@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ultimate Super Calculator — 11 kategori: dasar & ilmiah, geometri, fisika, keuangan & kripto, kesehatan, IT & server, AI inference, sipil & air, otomotif, gaming, akademik. Ringan, responsif, real-time." />
+  <title>Ultimate Super Calculator — All-in-One</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen">
+
+  <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
+      <button id="btnMenu" type="button" aria-label="Buka menu kategori" class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-slate-200 bg-white hover:bg-slate-50">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      </button>
+      <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold text-xl select-none">∑</div>
+      <div class="min-w-0">
+        <h1 class="text-lg font-bold text-slate-900 leading-tight truncate">Ultimate Super Calculator</h1>
+        <p class="text-xs text-slate-500 truncate">11 kategori · ringan · real-time</p>
+      </div>
+      <div class="ml-auto hidden sm:block text-xs text-slate-500">Tanpa eval() · Vanilla JS</div>
+    </div>
+  </header>
+
+  <div id="overlay" class="hidden fixed inset-0 bg-slate-900/40 z-30 lg:hidden"></div>
+
+  <div class="max-w-6xl mx-auto flex items-start gap-6 px-4 py-6">
+
+    <aside id="sidebar" class="fixed lg:sticky top-16 lg:top-20 left-0 z-40 h-[calc(100vh-4rem)] lg:h-[calc(100vh-6rem)] w-72 shrink-0 bg-white border-r lg:border lg:rounded-2xl border-slate-200 p-4 overflow-y-auto -translate-x-full lg:translate-x-0">
+      <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">Kategori</p>
+      <nav class="space-y-2" aria-label="Kategori kalkulator">
+        <button type="button" data-cat="basic" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border border-slate-200 text-left transition-colors">
+          <span class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-lg">🔢</span>
+          <span><span class="block text-sm font-semibold">Dasar &amp; Ilmiah</span><span class="block text-xs opacity-70">+ − × ÷ · sin cos tan log !</span></span>
+        </button>
+        <button type="button" data-cat="geometry" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border border-slate-200 text-left transition-colors">
+          <span class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-lg">📐</span>
+          <span><span class="block text-sm font-semibold">Geometri</span><span class="block text-xs opacity-70">Luas &amp; volume</span></span>
+        </button>
+        <button type="button" data-cat="physics" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border border-slate-200 text-left transition-colors">
+          <span class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-lg">⚙️</span>
+          <span><span class="block text-sm font-semibold">Fisika</span><span class="block text-xs opacity-70">v · F · ρ</span></span>
+        </button>
+        <button type="button" data-cat="finance" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border border-slate-200 text-left transition-colors">
+          <span class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-lg">💰</span>
+          <span><span class="block text-sm font-semibold">Keuangan &amp; Kripto</span><span class="block text-xs opacity-70">Bunga · ROI · DCA · Mining</span></span>
+        </button>
+        <button type="button" data-cat="health" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border border-slate-200 text-left transition-colors">
+          <span class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-lg">❤️</span>
+          <span><span class="block text-sm font-semibold">Kesehatan</span><span class="block text-xs opacity-70">BMI / IMT</span></span>
+        </button>
+        <button type="button" data-cat="network" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border border-slate-200 text-left transition-colors">
+          <span class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-lg">🌐</span>
+          <span><span class="block text-sm font-semibold">IT &amp; Server</span><span class="block text-xs opacity-70">Subnet · Download · MC RAM</span></span>
+        </button>
+        <button type="button" data-cat="ai" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border border-slate-200 text-left transition-colors">
+          <span class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-lg">🤖</span>
+          <span><span class="block text-sm font-semibold">AI Inference</span><span class="block text-xs opacity-70">VRAM · GGUF</span></span>
+        </button>
+        <button type="button" data-cat="civil" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border border-slate-200 text-left transition-colors">
+          <span class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-lg">💧</span>
+          <span><span class="block text-sm font-semibold">Sipil &amp; Air</span><span class="block text-xs opacity-70">Debit · Hidrostatis</span></span>
+        </button>
+        <button type="button" data-cat="automotive" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border border-slate-200 text-left transition-colors">
+          <span class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-lg">🏎️</span>
+          <span><span class="block text-sm font-semibold">Otomotif</span><span class="block text-xs opacity-70">CC · Gear · Oli 2T</span></span>
+        </button>
+        <button type="button" data-cat="gaming" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border border-slate-200 text-left transition-colors">
+          <span class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-lg">🎮</span>
+          <span><span class="block text-sm font-semibold">Gaming</span><span class="block text-xs opacity-70">eDPI · Gacha · Top-Up</span></span>
+        </button>
+        <button type="button" data-cat="academic" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border border-slate-200 text-left transition-colors">
+          <span class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-lg">🎓</span>
+          <span><span class="block text-sm font-semibold">Akademik</span><span class="block text-xs opacity-70">IPK · TOEFL · Langganan</span></span>
+        </button>
+      </nav>
+      <div class="mt-4 p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 leading-relaxed">
+        <p class="font-semibold text-slate-800 mb-1">Tips cepat</p>
+        <p>Hasil semua rumus terhitung otomatis saat mengetik. Tekan Enter (=) pada kalkulator dasar untuk simpan riwayat.</p>
+      </div>
+    </aside>
+
+    <main class="flex-1 min-w-0 max-w-4xl mx-auto w-full space-y-6">
+
+      <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
+        <div class="min-w-0">
+          <h2 id="categoryTitle" class="text-xl font-bold text-slate-900">Dasar &amp; Ilmiah</h2>
+          <p id="categoryDesc" class="text-sm text-slate-500 mt-0.5">Aritmetika, modulo, pangkat, akar, trigonometri, logaritma, faktorial.</p>
+        </div>
+        <div class="mt-4 lg:hidden">
+          <label for="mobileCategory" class="block text-xs font-semibold text-slate-600 mb-1">Pilih kategori (dropdown)</label>
+          <select id="mobileCategory" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200">
+            <option value="basic">🔢 Dasar &amp; Ilmiah</option>
+            <option value="geometry">📐 Geometri</option>
+            <option value="physics">⚙️ Fisika</option>
+            <option value="finance">💰 Keuangan &amp; Kripto</option>
+            <option value="health">❤️ Kesehatan</option>
+            <option value="network">🌐 IT &amp; Server</option>
+            <option value="ai">🤖 AI Inference</option>
+            <option value="civil">💧 Sipil &amp; Air</option>
+            <option value="automotive">🏎️ Otomotif</option>
+            <option value="gaming">🎮 Gaming</option>
+            <option value="academic">🎓 Akademik</option>
+          </select>
+        </div>
+      </section>
+
+      <section id="panel-basic" class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <span class="text-sm font-semibold text-slate-800">Mode sudut:</span>
+          <div class="inline-flex bg-slate-100 rounded-lg p-1 border border-slate-200">
+            <button id="angleDeg" type="button" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-slate-900 text-white">Derajat</button>
+            <button id="angleRad" type="button" class="px-3 py-1.5 text-xs font-semibold rounded-md text-slate-600 hover:bg-slate-100">Radian</button>
+          </div>
+          <span class="text-xs text-slate-500 ml-auto">log = basis 10 · ! = faktorial</span>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-4">
+          <p id="basicPrev" class="text-xs text-slate-500 min-h-[1rem] break-all">Siap menghitung…</p>
+          <input id="basicDisplay" type="text" autocomplete="off" spellcheck="false" placeholder="cth: 5! + sqrt(16) + sin(30)" aria-label="Ekspresi matematika" class="w-full bg-transparent text-right text-2xl sm:text-3xl font-bold text-slate-900 py-2 focus:outline-none placeholder:text-slate-300 placeholder:text-lg placeholder:font-normal" />
+          <p class="text-right text-sm mt-1">Hasil live: <span id="basicLive" class="font-bold text-slate-700">—</span></p>
+        </div>
+        <p class="text-xs font-semibold text-slate-600 mt-4 mb-2">Fungsi ilmiah</p>
+        <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
+          <button data-insert="sin(" class="bg-slate-100 hover:bg-slate-200 rounded-lg py-2.5 text-sm font-semibold">sin(</button>
+          <button data-insert="cos(" class="bg-slate-100 hover:bg-slate-200 rounded-lg py-2.5 text-sm font-semibold">cos(</button>
+          <button data-insert="tan(" class="bg-slate-100 hover:bg-slate-200 rounded-lg py-2.5 text-sm font-semibold">tan(</button>
+          <button data-insert="log(" class="bg-slate-100 hover:bg-slate-200 rounded-lg py-2.5 text-sm font-semibold">log(</button>
+          <button data-insert="ln(" class="bg-slate-100 hover:bg-slate-200 rounded-lg py-2.5 text-sm font-semibold">ln(</button>
+          <button data-insert="sqrt(" class="bg-slate-100 hover:bg-slate-200 rounded-lg py-2.5 text-sm font-semibold">√(</button>
+          <button data-insert="^" class="bg-slate-100 hover:bg-slate-200 rounded-lg py-2.5 text-sm font-semibold">xʸ (^)</button>
+          <button data-insert="!" class="bg-slate-100 hover:bg-slate-200 rounded-lg py-2.5 text-sm font-semibold">n!</button>
+          <button data-insert="(" class="bg-slate-100 hover:bg-slate-200 rounded-lg py-2.5 text-sm font-semibold">(</button>
+          <button data-insert=")" class="bg-slate-100 hover:bg-slate-200 rounded-lg py-2.5 text-sm font-semibold">)</button>
+          <button data-insert="pi" class="bg-slate-100 hover:bg-slate-200 rounded-lg py-2.5 text-sm font-semibold">π</button>
+          <button data-insert="fact(" class="bg-slate-100 hover:bg-slate-200 rounded-lg py-2.5 text-sm font-semibold">fact(</button>
+        </div>
+        <p class="text-xs font-semibold text-slate-600 mt-4 mb-2">Keypad dasar</p>
+        <div class="grid grid-cols-4 gap-2">
+          <button id="btnClear" class="col-span-2 bg-red-100 hover:bg-red-200 text-red-700 font-bold py-3 rounded-lg">AC</button>
+          <button id="btnBack" class="bg-slate-200 hover:bg-slate-300 font-bold py-3 rounded-lg" aria-label="Hapus satu karakter">⌫</button>
+          <button data-insert="/" class="bg-slate-900 hover:bg-slate-700 text-white font-bold py-3 rounded-lg">÷</button>
+          <button data-insert="7" class="bg-white border border-slate-200 hover:bg-slate-50 font-bold py-3 rounded-lg shadow-sm">7</button>
+          <button data-insert="8" class="bg-white border border-slate-200 hover:bg-slate-50 font-bold py-3 rounded-lg shadow-sm">8</button>
+          <button data-insert="9" class="bg-white border border-slate-200 hover:bg-slate-50 font-bold py-3 rounded-lg shadow-sm">9</button>
+          <button data-insert="*" class="bg-slate-900 hover:bg-slate-700 text-white font-bold py-3 rounded-lg">×</button>
+          <button data-insert="4" class="bg-white border border-slate-200 hover:bg-slate-50 font-bold py-3 rounded-lg shadow-sm">4</button>
+          <button data-insert="5" class="bg-white border border-slate-200 hover:bg-slate-50 font-bold py-3 rounded-lg shadow-sm">5</button>
+          <button data-insert="6" class="bg-white border border-slate-200 hover:bg-slate-50 font-bold py-3 rounded-lg shadow-sm">6</button>
+          <button data-insert="-" class="bg-slate-900 hover:bg-slate-700 text-white font-bold py-3 rounded-lg">−</button>
+          <button data-insert="1" class="bg-white border border-slate-200 hover:bg-slate-50 font-bold py-3 rounded-lg shadow-sm">1</button>
+          <button data-insert="2" class="bg-white border border-slate-200 hover:bg-slate-50 font-bold py-3 rounded-lg shadow-sm">2</button>
+          <button data-insert="3" class="bg-white border border-slate-200 hover:bg-slate-50 font-bold py-3 rounded-lg shadow-sm">3</button>
+          <button data-insert="+" class="bg-slate-900 hover:bg-slate-700 text-white font-bold py-3 rounded-lg">+</button>
+          <button data-insert="0" class="col-span-2 bg-white border border-slate-200 hover:bg-slate-50 font-bold py-3 rounded-lg shadow-sm">0</button>
+          <button data-insert="." class="bg-white border border-slate-200 hover:bg-slate-50 font-bold py-3 rounded-lg shadow-sm">.</button>
+          <button id="btnEquals" class="bg-slate-900 hover:bg-slate-700 text-white font-bold py-3 rounded-lg">=</button>
+          <button data-insert="%" class="bg-slate-100 hover:bg-slate-200 font-semibold py-2.5 rounded-lg text-sm">mod %</button>
+          <button data-insert="e" class="bg-slate-100 hover:bg-slate-200 font-semibold py-2.5 rounded-lg text-sm">e</button>
+          <button data-insert="cbrt(" class="bg-slate-100 hover:bg-slate-200 font-semibold py-2.5 rounded-lg text-sm">∛(</button>
+          <button data-insert="00" class="bg-slate-100 hover:bg-slate-200 font-semibold py-2.5 rounded-lg text-sm">00</button>
+        </div>
+        <div class="mt-4 text-xs text-slate-500 bg-slate-50 border border-slate-200 rounded-lg p-3 leading-relaxed">
+          Contoh: <code class="bg-white px-1 rounded border">2+3*4</code>, <code class="bg-white px-1 rounded border">5!</code>, <code class="bg-white px-1 rounded border">sqrt(16)+2^3</code>, <code class="bg-white px-1 rounded border">sin(30)</code>, <code class="bg-white px-1 rounded border">10%3</code>, <code class="bg-white px-1 rounded border">log(100)</code>.
+        </div>
+      </section>
+
+      <section id="panel-formula" class="hidden bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
+        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">Pilih rumus</p>
+        <div id="formulaList" class="flex gap-2 overflow-x-auto pb-2 flex-wrap"></div>
+        <div class="mt-4 rounded-xl bg-slate-50 border border-slate-200 p-4">
+          <h3 id="formulaTitle" class="font-bold text-slate-900">—</h3>
+          <p class="mt-1 inline-block text-sm font-mono font-semibold bg-slate-900 text-white px-2.5 py-1 rounded-lg" id="formulaText">—</p>
+          <p id="formulaDesc" class="text-sm text-slate-500 mt-2">—</p>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-6 mt-5">
+          <div>
+            <h4 class="text-sm font-bold text-slate-900 mb-3">Input data</h4>
+            <div id="inputFields" class="space-y-4"></div>
+            <div class="flex gap-2 mt-4">
+              <button id="btnReset" type="button" class="flex-1 px-3 py-2.5 rounded-lg border border-slate-300 text-sm font-semibold text-slate-700 hover:bg-slate-50">Reset</button>
+              <button id="btnCopy" type="button" class="flex-1 px-3 py-2.5 rounded-lg bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700">Salin hasil</button>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-slate-900 mb-3">Hasil real-time</h4>
+            <div id="resultBox" data-last-result="" class="rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <p class="text-xs text-slate-500">Hasil</p>
+              <p class="mt-1 text-3xl font-extrabold text-slate-900 break-all"><span id="resultValue">—</span></p>
+              <p id="resultUnit" class="text-sm text-slate-500">isi input untuk melihat hasil</p>
+              <div class="mt-3 pt-3 border-t border-slate-200">
+                <p class="text-xs font-semibold text-slate-600 mb-1">Langkah perhitungan</p>
+                <ol id="resultSteps" class="text-sm text-slate-700 space-y-1 list-decimal list-inside"></ol>
+              </div>
+              <div id="resultExtras" class="mt-2"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
+        <div class="flex items-center gap-2 mb-2">
+          <h3 class="font-bold text-slate-900">Riwayat perhitungan</h3>
+          <button id="btnClearHistory" type="button" class="ml-auto text-xs font-semibold text-slate-500 hover:text-red-600 border border-slate-200 rounded-lg px-2.5 py-1.5">Hapus riwayat</button>
+        </div>
+        <p id="historyEmpty" class="text-sm text-slate-400">Belum ada riwayat. Setiap “=” dan “Salin hasil” tercatat di sini.</p>
+        <ul id="historyList" class="max-h-48 overflow-y-auto"></ul>
+      </section>
+
+      <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
+        <h3 class="font-bold text-slate-900 text-lg">📖 Petunjuk Penggunaan</h3>
+        <ol class="mt-3 space-y-2.5 text-sm text-slate-600 list-decimal list-inside leading-relaxed">
+          <li><b class="text-slate-800">Pilih kategori</b> di Sidebar (desktop) atau Dropdown (HP). 11 kategori: Dasar &amp; Ilmiah, Geometri, Fisika, Keuangan &amp; Kripto, Kesehatan, IT &amp; Server, AI Inference, Sipil &amp; Air, Otomotif, Gaming, Akademik.</li>
+          <li><b class="text-slate-800">Kalkulator dasar:</b> ketik ekspresi / tekan keypad. Hasil live otomatis; tekan <b>=</b> / Enter untuk simpan riwayat. <b>!</b> = faktorial.</li>
+          <li><b class="text-slate-800">Mode rumus:</b> pilih rumus (mis. ROI, Subnetting, VRAM, Debit, CC, eDPI, IPK), isi input sesuai label. Dropdown satuan bila ada.</li>
+          <li>Desimal boleh titik/koma. Field bertanda (opsional) boleh dikosongkan.</li>
+          <li><b class="text-slate-800">Hasil real-time</b> + langkah + info tambahan tampil di panel kanan. <b>Salin hasil</b> / <b>Reset</b> tersedia.</li>
+          <li>Trigonometri: atur Derajat/Radian. log = basis 10, ln = natural.</li>
+        </ol>
+      </section>
+
+      <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
+        <h3 class="font-bold text-slate-900 text-lg">📝 Catatan</h3>
+        <ul class="mt-3 space-y-2 text-sm text-slate-600 list-disc list-inside leading-relaxed">
+          <li>Untuk <b>pembelajaran &amp; estimasi umum</b>, bukan pengganti software teknik/keuangan/medis bersertifikat.</li>
+          <li>Satuan SI konsisten; geometri memakai cm sebagai ilustrasi.</li>
+          <li>Tampilan maks 6 desimal; komputasi presisi penuh double JavaScript.</li>
+          <li>Faktorial 0–170. Trigonometri default derajat.</li>
+          <li>Keuangan/mining bukan nasihat investasi. Mining memakai revenue kotor input (cek pool/WhatToMine); difficulty &amp; fee diabaikan.</li>
+          <li>Subnet IPv4 unicast; /31 ikut RFC 3021. Download/bandwidth abaikan overhead protokol.</li>
+          <li>VRAM/GGUF memakai overhead default; KV-cache prompt panjang tidak dimodelkan rinci.</li>
+          <li>Hidrostatis = gauge. Debit = aliran seragam. CC = volume teoritis.</li>
+          <li>Gacha = peluang binomial independen (kecuali pity). eDPI lintas game tidak identik 1:1.</li>
+          <li>TOEFL = prediksi skala, konversi mentah→skala tiap tes berbeda. IPK contoh 5 MK.</li>
+          <li>BMI WHO, <b>bukan diagnosis medis</b>. Riwayat hanya di localStorage perangkat Anda.</li>
+        </ul>
+        <footer class="mt-4 pt-4 border-t border-slate-100 text-xs text-slate-400 flex flex-col sm:flex-row gap-1 sm:items-center">
+          <span>Ultimate Super Calculator v3.0 · HTML + Tailwind CDN + Vanilla JS · Tanpa eval().</span>
+          <span class="sm:ml-auto">Minimalis &amp; mudah dibaca.</span>
+        </footer>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="js/modules/basicScientific.js"></script>
+  <script src="js/modules/geometry.js"></script>
+  <script src="js/modules/fisika.js"></script>
+  <script src="js/modules/finance.js"></script>
+  <script src="js/modules/health.js"></script>
+  <script src="js/modules/network.js"></script>
+  <script src="js/modules/ai.js"></script>
+  <script src="js/modules/civil.js"></script>
+  <script src="js/modules/automotive.js"></script>
+  <script src="js/modules/gaming.js"></script>
+  <script src="js/modules/academic.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
